@@ -230,7 +230,7 @@ SELINUX_IGNORE_NEVERALLOWS := true
 endif
 
 include device/qcom/sepolicy_vndr/SEPolicy.mk
-include device/xiaomi/raphael-sepolicy/raphael-sepolicy.mk
+include device/xiaomi/raphael/sepolicy/raphael-sepolicy.mk
 
 # Vendor init
 TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_raphael

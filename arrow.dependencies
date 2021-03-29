@@ -8,7 +8,7 @@
     "target_path": "kernel/xiaomi/raphael"
   },
   {
-    "repository": "kubersharma001/android_packages_apps_GcamGOPrebuilt",
+    "repository": "android_packages_apps_GcamGOPrebuilt",
     "target_path": "packages/apps/GcamGOPrebuilt"
   }
 ]

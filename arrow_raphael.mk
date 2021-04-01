@@ -22,7 +22,7 @@ $(call inherit-product, vendor/arrow/config/common.mk)
 PRODUCT_NAME := arrow_raphael
 PRODUCT_DEVICE := raphael
 PRODUCT_BRAND := Xiaomi
-PRODUCT_MODEL := MI 9T Pro
+PRODUCT_MODEL := Redmi K20 Pro
 PRODUCT_MANUFACTURER := Xiaomi
 DEVICE_MAINTAINER := kubersharma001
 

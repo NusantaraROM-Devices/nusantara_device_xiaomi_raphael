@@ -138,3 +138,7 @@ PRODUCT_PROPERTY_OVERRIDES += debug.sf.earlyGl.app.duration=21000000
 # Scroll optimization
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.perf.scroll_opt=true
+
+# SkiaGL
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.hwui.renderer=skiagl

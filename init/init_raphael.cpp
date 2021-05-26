@@ -124,7 +124,9 @@ void vendor_load_properties() {
         mod_device = "raphaelin_in_global";
     }
 
-    // SafetyNet workaround
+    property_override("ro.apex.updatable", "false");
+
+    // Safetynet Workaround
     property_override("ro.boot.verifiedbootstate", "green");
     fingerprint = "google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys";
     description = "walleye-user 8.1.0 OPM1.171019.011 4448085 release-keys";

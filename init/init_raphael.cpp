@@ -93,5 +93,13 @@ void vendor_load_properties() {
         LOG(ERROR) << __func__ << ": unexcepted region!";
     }
 
+    property_override("ro.apex.updatable", "false");
+
+    // Safetynet Workaround
+    property_override("ro.boot.verifiedbootstate", "green");
+    property_override("ro.oem_unlock_supported", "0");
+
+    property_override("ro.build.fingerprint", "google/redfin/redfin:11/RQ2A.210505.003/7255357:user/release-keys");
+
     load_dalvik_properties();
 }

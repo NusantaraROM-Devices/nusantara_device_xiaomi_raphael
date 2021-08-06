@@ -13,4 +13,9 @@
 # limitations under the License.
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/arrow_raphael.mk
+    $(LOCAL_DIR)/ancient_raphael.mk
+
+COMMON_LUNCH_CHOICES := \
+    ancient_raphael-user \
+    ancient_raphael-userdebug \
+    ancient_raphael-eng

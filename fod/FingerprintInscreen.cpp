@@ -18,10 +18,17 @@
 
 #include "FingerprintInscreen.h"
 
+#include <android-base/file.h>
 #include <android-base/logging.h>
 
+#include <chrono>
 #include <cmath>
 #include <fstream>
+#include <thread>
+
+#include <fcntl.h>
+#include <poll.h>
+#include <sys/stat.h>
 
 #define FINGERPRINT_ACQUIRED_VENDOR 6
 
@@ -33,14 +40,17 @@
 #define FOD_STATUS_ON 1
 #define FOD_STATUS_OFF 0
 
+#define FOD_UI_PATH "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/fod_ui"
+#define DIM_LAYER_OFF_DELAY 85ms
+
 #define FOD_SENSOR_X 445
 #define FOD_SENSOR_Y 1931
 #define FOD_SENSOR_SIZE 190
 
 #define DIM_LAYER_HBM_PATH "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/dimlayer_hbm"
 
-#define DIM_LAYER_HBM_ON 1
-#define DIM_LAYER_HBM_OFF 0
+using ::android::base::WriteStringToFile;
+using namespace std::chrono_literals;
 
 namespace {
 
@@ -49,8 +59,31 @@ static void set(const std::string& path, const T& value) {
     std::ofstream file(path);
     file << value;
 }
-}  // anonymous namespace
 
+static bool readBool(int fd) {
+    char c;
+    int rc;
+
+    rc = lseek(fd, 0, SEEK_SET);
+    if (rc) {
+        LOG(ERROR) << "failed to seek fd, err: " << rc;
+        return false;
+    }
+
+    rc = read(fd, &c, sizeof(char));
+    if (rc != 1) {
+        LOG(ERROR) << "failed to read bool from fd, err: " << rc;
+        return false;
+    }
+
+    return c != '0';
+}
+
+// Write value to path and close file.
+bool WriteToFile(const std::string& path, uint32_t content) {
+    return WriteStringToFile(std::to_string(content), path);
+}
+}  // anonymous namespace
 namespace vendor {
 namespace lineage {
 namespace biometrics {
@@ -61,6 +94,31 @@ namespace implementation {
 
 FingerprintInscreen::FingerprintInscreen() {
     xiaomiFingerprintService = IXiaomiFingerprint::getService();
+
+    std::thread([this]() {
+        int fd = open(FOD_UI_PATH, O_RDONLY);
+        if (fd < 0) {
+            LOG(ERROR) << "failed to open fd, err: " << fd;
+            return;
+        }
+
+        struct pollfd fodUiPoll = {
+                .fd = fd,
+                .events = POLLERR | POLLPRI,
+                .revents = 0,
+        };
+
+        while (true) {
+            int rc = poll(&fodUiPoll, 1, -1);
+            if (rc < 0) {
+                LOG(ERROR) << "failed to poll fd, err: " << rc;
+                continue;
+            }
+
+            xiaomiFingerprintService->extCmd(COMMAND_NIT,
+                                             readBool(fd) ? PARAM_NIT_FOD : PARAM_NIT_NONE);
+        }
+    }).detach();
 }
 
 Return<int32_t> FingerprintInscreen::getPositionX() {
@@ -84,13 +142,11 @@ Return<void> FingerprintInscreen::onFinishEnroll() {
 }
 
 Return<void> FingerprintInscreen::onPress() {
-    xiaomiFingerprintService->extCmd(COMMAND_NIT, PARAM_NIT_FOD);
-    set(DIM_LAYER_HBM_PATH, DIM_LAYER_HBM_ON);
+    WriteToFile(DIM_LAYER_HBM_PATH, 1);
     return Void();
 }
 
 Return<void> FingerprintInscreen::onRelease() {
-    xiaomiFingerprintService->extCmd(COMMAND_NIT, PARAM_NIT_NONE);
     return Void();
 }
 
@@ -101,7 +157,8 @@ Return<void> FingerprintInscreen::onShowFODView() {
 
 Return<void> FingerprintInscreen::onHideFODView() {
     set(FOD_STATUS_PATH, FOD_STATUS_OFF);
-    set(DIM_LAYER_HBM_PATH, DIM_LAYER_HBM_OFF);
+    std::this_thread::sleep_for(DIM_LAYER_OFF_DELAY);
+    WriteToFile(DIM_LAYER_HBM_PATH, 0);
     return Void();
 }
 

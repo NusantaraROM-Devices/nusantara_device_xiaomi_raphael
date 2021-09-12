@@ -105,22 +105,13 @@ void vendor_load_properties() {
     if (region == "GLOBAL") {
         model = "Mi 9T Pro";
         device = "raphael";
-        fingerprint =
-                "Xiaomi/raphael/raphael:10/QKQ1.190825.002/V12.0.4.0.QFKMIXM:user/release-keys";
-        description = "raphael-user 10 QKQ1.190825.002 V12.0.4.0.QFKMIXM release-keys";
         mod_device = "raphael_global";
     } else if (region == "CN") {
         model = "Redmi K20 Pro";
         device = "raphael";
-        fingerprint =
-                "Xiaomi/raphael/raphael:10/QKQ1.190825.002/V12.0.6.0.QFKCNXM:user/release-keys";
-        description = "raphael-user 10 QKQ1.190825.002 V12.0.6.0.QFKCNXM release-keys";
     } else if (region == "INDIA") {
         model = "Redmi K20 Pro";
         device = "raphaelin";
-        fingerprint =
-                "Xiaomi/raphaelin/raphaelin:10/QKQ1.190825.002/V12.0.4.0.QFKINXM:user/release-keys";
-        description = "raphaelin-user 10 QKQ1.190825.002 V12.0.4.0.QFKINXM release-keys";
         mod_device = "raphaelin_in_global";
     }
 
@@ -128,8 +119,8 @@ void vendor_load_properties() {
 
     // Safetynet Workaround
     property_override("ro.boot.verifiedbootstate", "green");
-    fingerprint = "google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys";
-    description = "walleye-user 8.1.0 OPM1.171019.011 4448085 release-keys";
+    fingerprint = "google/coral/coral:11/RQ3A.210905.001/7511028:user/release-keys";
+    description = "coral-user 11 RQ3A.210905.001 7511028 release-keys";
 
     set_ro_build_prop("fingerprint", fingerprint);
     set_ro_product_prop("device", device);

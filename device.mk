@@ -252,7 +252,8 @@ PRODUCT_PACKAGES += \
     init.raphael.rc \
     init.recovery.qcom.rc \
     init.target.rc \
-    ueventd.qcom.rc
+    ueventd.qcom.rc \
+    init.performance_level.rc
 
 # IPACM
 PRODUCT_PACKAGES += \

@@ -7,26 +7,21 @@
 $(call inherit-product, device/xiaomi/raphael/device.mk)
 
 # Inherit some common Lineage stuff.
-$(call inherit-product, vendor/ancient/config/common_full_phone.mk)
+$(call inherit-product, vendor/nusantara/config/common_full_phone.mk)
 
 # Device identifier. This must come after all inclusions.
 PRODUCT_BRAND := Xiaomi
 PRODUCT_DEVICE := raphael
 PRODUCT_MANUFACTURER := Xiaomi
-PRODUCT_NAME := ancient_raphael
-
-BUILD_FINGERPRINT := "google/redfin/redfin:11/RQ3A.210805.001.A1/7474174:user/release-keys"
-
+PRODUCT_NAME := nad_raphael
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
+# Nusantara
+NAD_BUILD_TYPE := OFFICIAL
+#USE_GAPPS ?= true
+#TARGET_GAPPS_ARCH := arm64
 TARGET_BOOT_ANIMATION_RES := 1080
 TARGET_USES_BLUR := true
-TARGET_INCLUDE_PIXEL_CHARGER := true
-EXTRA_FOD_ANIMATIONS := true
-
-# Ancient
-ANCIENT_OFFICIAL=true
-#TARGET_GAPPS_ARCH := arm64
-#IS_PHONE := true
-#ANCIENT_GAPPS := true
-#ANCIENT_WEEABO := true
+USE_PIXEL_CHARGING := true
+TARGET_SUPPORTS_GOOGLE_RECORDER := true
+TARGET_FOD_ANIMATIONS := true

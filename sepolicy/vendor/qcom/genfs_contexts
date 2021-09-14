@@ -1,3 +1,5 @@
+genfscon sysfs /class/power_supply/battery/capacity                     u:object_r:sysfs_battery_supply:s0
+
 # Wakeup source stats
 genfscon sysfs /devices/platform/goodix_ts.0/wakeup                                                                                                u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/18800000.qcom,icnss/wakeup                                                                                    u:object_r:sysfs_wakeup:s0

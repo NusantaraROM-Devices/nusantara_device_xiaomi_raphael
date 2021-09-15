@@ -119,16 +119,8 @@ void vendor_load_properties() {
 
     // Safetynet Workaround
     property_override("ro.boot.verifiedbootstate", "green");
-    fingerprint = "google/coral/coral:11/RQ3A.210905.001/7511028:user/release-keys";
-    description = "coral-user 11 RQ3A.210905.001 7511028 release-keys";
-
-    set_ro_build_prop("fingerprint", fingerprint);
-    set_ro_product_prop("device", device);
-    set_ro_product_prop("model", model);
-    property_override("ro.build.description", description.c_str());
-    if (mod_device != "") {
-        property_override("ro.product.mod_device", mod_device.c_str());
-    }
+    property_override_multi("ro.build.fingerprint", "ro.vendor.build.fingerprint","ro.bootimage.build.fingerprint", "google/coral/coral:11/RQ3A.210905.001/7511028:user/release-keys");
+    property_override("ro.build.description", "coral-user 11 RQ3A.210905.001 7511028 release-keys");
 
     property_override("ro.boot.hardware.revision", hardware_revision.c_str());
 

@@ -153,13 +153,8 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.4-impl \
-    android.hardware.camera.provider@2.4-service_64 \
-    libcamera2ndk_vendor \
     libdng_sdk.vendor \
-    libgui_vendor \
     Snap \
-    vendor.qti.hardware.camera.device@1.0.vendor \
     vendor.xiaomi.hardware.motor@1.0.vendor
 
 # Component overrides
@@ -204,7 +199,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PACKAGES += \
     disable_configstore
-    
+
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.3-service.clearkey
@@ -252,9 +247,6 @@ PRODUCT_COPY_FILES += \
 # Init scripts
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    init.class_main.sh \
-    init.qcom.class_core.sh \
-    init.qcom.early_boot.sh \
     init.qcom.post_boot.sh \
     init.qcom.rc \
     init.qcom.sh \
@@ -265,6 +257,10 @@ PRODUCT_PACKAGES += \
     init.target.rc \
     init.xiaomi.rc \
     ueventd.qcom.rc
+
+# IMS
+PRODUCT_PACKAGES += \
+    CarrierConfigOverlay
 
 # IFAA manager
 PRODUCT_PACKAGES += \
@@ -449,6 +445,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini \
     $(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    wifi.interface=wlan0 \
+    wifi.supplicant_scan_interval=180
 
 # WiFi Display
 PRODUCT_PACKAGES += \

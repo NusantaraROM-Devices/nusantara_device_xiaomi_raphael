@@ -62,7 +62,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.disable_backpressure=1 \
     debug.sf.enable_gl_backpressure=1 \
     debug.sf.latch_unsignaled=1 \
-    debug.cpurend.vsync=false
+    debug.cpurend.vsync=false \
+    debug.sf.recomputecrop=0
 
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \

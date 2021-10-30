@@ -88,6 +88,10 @@ endif
 
 # Display
 TARGET_USES_HWC2 := true
+BOARD_USES_ADRENO := true
+TARGET_USES_GRALLOC1 := true
+TARGET_USES_ION := true
+OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 
 # DRM
 TARGET_ENABLE_MEDIADRM_64 := true

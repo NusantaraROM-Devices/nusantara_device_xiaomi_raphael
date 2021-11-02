@@ -61,7 +61,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.disable_backpressure=1 \
     debug.sf.enable_gl_backpressure=1 \
-    debug.cpurend.vsync=false
+    debug.cpurend.vsync=false \
+    debug.hwui.renderer=skiagl
 
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \

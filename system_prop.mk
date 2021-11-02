@@ -42,7 +42,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.eyecare.brightness.level=5 \
     ro.displayfeature.histogram.enable=true \
     ro.hist.brightness.threshold=7 \
-    ro.sf.lcd_density=440 \
+    ro.sf.lcd_density=420 \
     ro.vendor.display.ad=1 \
     ro.vendor.display.ad.hdr_calib_data=/vendor/etc/hdr_config.cfg \
     ro.vendor.display.ad.sdr_calib_data=/vendor/etc/sdr_config.cfg \
@@ -61,7 +61,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.disable_backpressure=1 \
     debug.sf.enable_gl_backpressure=1 \
-    debug.sf.latch_unsignaled=1 \
     debug.sf.enable_hwc_vds=1 \
     debug.cpurend.vsync=false
 

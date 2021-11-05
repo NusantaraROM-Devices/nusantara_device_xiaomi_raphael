@@ -13,6 +13,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.bluetooth.library_name=libbluetooth_qti.so \
     vendor.bluetooth.soc=cherokee
 
+# Blur
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.sf.disable_blurs=1
+
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.camera.privapp.list=com.android.camera \

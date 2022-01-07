@@ -22,7 +22,7 @@
    {
    "remote"       : "github",
    "repository"   : "NusantaraROM-Devices/vendor_xiaomi_sm8250-common-extra",
-   "target_path"  : "device/xiaomi/extra",
+   "target_path"  : "vendor/xiaomi/raphael-extra",
    "branch"       : "12"
    },
 ]
